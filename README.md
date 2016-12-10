@@ -383,12 +383,13 @@ $.ajax({
 -	Event
     -   Event Queue
         -   Inner loop
-        -   ```Javascript
-        while (true) {
-                if (!eventQueue.notEmpty()) {
-                    eventQueue.pop().call();
-                }
-        }```
+```Javascript
+while (true) {
+        if (!eventQueue.notEmpty()) {
+            eventQueue.pop().call();
+        }
+}
+```
 -	Get the same JS on browser and server
 -	Don't need DOM on the server
 -	Add events and an event queue, everything runs as a call from event loop. (See above)
@@ -418,34 +419,37 @@ $.ajax({
     -   ignore files for git
 -	Programming with events/callbacks
     -   Threads: Blocking/waiting is transparent
-        -   ```Javascript
-        r1 = step1();
-        console.log('step1 done', r1);
-        r2 = step2(r1);
-        console.log('step2 done', r2);
-        r3 = step3(r2);
-        console.log('step3 done', r3);
-        console.log('All Done!');```
+```Javascript
+r1 = step1();
+console.log('step1 done', r1);
+r2 = step2(r1);
+console.log('step2 done', r2);
+r3 = step3(r2);
+console.log('step3 done', r3);
+console.log('All Done!');
+```
 
     -   Events: Blocking/waiting requires callback
-        -   ```javascript
-        step1(function(r1) {
-                console.log('s1 done', r1);
-                step2(r1, function (r2) {
-                    console.log('s2 done', r2);
-                    step3(r2, function (r3) {
-                        console.log('s3done',r3);
-                        console.log('All Done!');
-                    });
-                });
-            });```
+```javascript
+step1(function(r1) {
+        console.log('s1 done', r1);
+        step2(r1, function (r2) {
+            console.log('s2 done', r2);
+            step3(r2, function (r3) {
+                console.log('s3done',r3);
+                console.log('All Done!');
+            });
+        });
+    });
+```
 -   Listener/emitter pattern
     -   When programming with events, a listener/emitter is used.
     -   Listener - Function to be called when the event is signaled
     -   Emitter - Signal that an event has occurred
-    -   ```Javascript
+```Javascript
     var events = require('events');
     var myEmitter = new events.eventEmitter();
     myEmitter.on('myEvent', function(param1, param2) {
      console.log('myEvent occurred with ' + param1 + 'and' + param2 + '!'); // like wait
-    myEmitter.emit('myEvent', 'arg1', 'arg2'); // like signal```
+    myEmitter.emit('myEvent', 'arg1', 'arg2'); // like signal
+```
