@@ -428,7 +428,6 @@ r3 = step3(r2);
 console.log('step3 done', r3);
 console.log('All Done!');
 ```
-
     -   Events: Blocking/waiting requires callback
 ```javascript
 step1(function(r1) {
