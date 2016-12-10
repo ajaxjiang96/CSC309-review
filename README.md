@@ -9,9 +9,9 @@
 -	Made up by elements marked by tags
     -  	`<element>[content]</element>`
     -	required tags
-        -	`<!DOCTYPE html>`
+thirdLevel`<!DOCTYPE html>`
         -   `<html>`
-        -	`<body>`
+thirdLevel`<body>`
 
 ### HTML5
 -	Designed to support modern multimedia
@@ -135,10 +135,10 @@ selector {
 -	`window`
 	-   Top level object in BOM
     -  	Methods:
-        -	`alert`, `confirm`, `prompt`
+thirdLevel`alert`, `confirm`, `prompt`
         -   `setInterval`, `setTimeout`, `clearInterval`, `clearTimeout`
 	    -   `open`, `close`
-        -	`blur`, `focus`, `moveBy`, `moveTo`, `print`, `resizeBy`, `resizeTo`, `scrollBy`, `scrollTo`
+thirdLevel`blur`, `focus`, `moveBy`, `moveTo`, `print`, `resizeBy`, `resizeTo`, `scrollBy`, `scrollTo`
 -	`document`:
 	-   Current page and its elements
     -	Properties:
@@ -153,7 +153,7 @@ selector {
     -	Properties:
 	    -   host, hostname, href, pathname, port, protocol, search
     -	Methods:
-        -	`assign`, `reload`, `replace`
+thirdLevel`assign`, `reload`, `replace`
 -	`navigator`
     -   Information about the browser
     -   Properties:
@@ -404,7 +404,7 @@ $.ajax({
 -	Module
     -   Import with:
         -   System module: `require(“module name”); // looks in nodes_module`
-        -   From a file: `require(“./***.js”); // reads specified file`
+        -   From a file: `require(“./^^^.js”); // reads specified file`
         -   From a directory: `require(“./myModule”); // reads myModule/index.js`
     -   Modules have private scope
     -   Require returns what is assigned to module.exports
@@ -491,4 +491,184 @@ $.ajax({
     -   `res.end()` - End the request by responding it
     -   `res.send(content)` - Do write and End
 
-### Week 7: Databases
+## Week 7: Databases, MongoDB and Mongoose
+
+### Relational Databases
+-   collection of tables with rows and columns
+-   Each row represents a record
+-   Each column represents an attribute of the records contained in the table
+-   Why
+    -   Data safety
+    -   Concurrent access
+    -   Fault tolerance
+    -   Data integrity
+    -   Scalability
+    -   Reporting
+
+### ACID
+-   Atomic
+    -   All operations in a transaction complete, or none do
+-   Consistent
+    -   On completion of transaction, database is sound (?)
+    -   Constraints of the database are applied and database is in a valid state
+-   Isolated
+    -   transactions don't interfere with each other
+-   Durability
+    -   results of a transaction are permanent even in the case of failures
+
+### SQL
+-   Structured Query Language
+-   A special purpose programming language
+-   Data definition, manipulation, and controls.
+    -   Insert, Query, Update, delete
+-   Schema creation and modification
+-   Examples:
+    -   SQLite
+    -   MySQL
+    -   PostgreSQL
+    -   Access
+    -   PointBase
+
+-   Keys
+    -   Primary Key: organize data around accesses
+        -   Uniquely identifies a row in the table
+    -   Secondary Key: Other columns that are having unique values
+    -   Foreign Key: The Primary Key defined in another table
+
+-   Schemas
+    -   Define the structure of the database
+        -   tables, column indices
+    -   Needs to be defined before adding data
+    -   Not great match with agile development approaches (Each new feature may require a schema change)
+        -   Database migration allow incremental changes
+    -   __NoSQL databases are built to allow the insertion of data without a predefined schema__
+
+### NoSQL
+-   Do not use relational model or SQLite
+    -   Flexible schema
+    -   Quicker/cheaper to setup
+    -   Scalability
+    -   No declarative query language -> more programming
+    -   Relaxed consistency
+        -   -> Higher performance and availability
+        -   -> fewer guarantees
+-   Document types apply a key to a "document" with a complex data structure
+    -   Contain many different `key: value` pairs
+    -   Use standard data format (e.g. JSON, HTML)
+    -   Can be organized by collection, tags, etc.
+
+### NoSQL vs Relational
+-   Relational databases usually scale vertically
+-   NoSQL databases usually support
+    -   __auto-sharding__: natively and automatically store data across an arbitrary number of Servers
+    -   __automatic replication__: High availability and disaster recovery without involving separate applications to manage these tasks
+    -   __caching__: keep frequently used data in system memory and removing the need for a separate caching layer
+
+### BASE
+-   Basic Availability
+    -   Most of the database  is available most of the time
+-   Soft-state
+    -   Stores don't have to be write consistent
+-   Eventual consistency
+    -   At some later point, data stores will be Consistent
+
+### MongoDB
+-   NoSQL database uses a JSON-like (BSON) document oriented model
+-   Data is stored in collections (rather than tables)
+    -   Dynamic schema
+    -   Works with many programming languages
+    -   Caching: Most recent kept in RAM.
+    -   No transactions, but allows atomic operations.
+-   BSON
+    -   Binary JSON
+    -   MongoDB encodes JSON documents in binary format behind the scenes
+    -   Extends JSON to provide data types
+-   Document validation provided within the database
+-   Connect to MongoDB instance
+    ```javascript
+    mongoose.connect('mongodb://localhost/myproject');
+    ```
+-   wait for connection to Complete
+    ```javascript
+    mongoose.connection.on('open', function ()  {
+       // Can start processing model fetch requests
+    });
+    mongoose.connection.on('error', function (err) { });
+    ```
+    -   Can also listen for connecting, connected, disconnecting, disconnected
+
+#### schema
+-   Defines collections
+-   Types:
+    -   String, Number, Data, Buffer, Boolean
+    -   Array - e.g comments `[ObjectId]`
+    -   ObjectID - reference to another object
+    -   Mixed - anything
+-   Defining:
+    ```javascript
+    var userSchema = new mongoose.Schema({
+        first_name: String,
+        last_name: String,
+        emailAddresses: [String],
+        location: String
+    });
+    ```
+-   Secondary indices
+    -   faster query
+    -   slower mutating operations: Add, delete, update must update indexes
+    -   Uses more space
+    -   When:
+        -   Common queries spend a lot of time scanning
+        -   Need to enforce uniqueness
+-   Making model from schema
+    ```javascript
+    var User = mongoose.model('User', userSchema);
+    ```
+-   Making objects from model
+    ```javascript
+    User.create({ first_name: 'Amy', last_name: 'Pond'}, doneCallback);
+    function doneCallback(err, newUser) {
+        assert (!err);
+        console.log('Created object with ID', newUser._id);
+    }
+    ```
+-   Queries
+    ```javascript
+    User.find(function(err, users) {
+        /* users is an array of objects */
+    });
+    User.findOne({key: value}, function(err, user) {
+        /* user is an object */
+    })
+    User.findOne({key: value}, function(err, user) {
+        // Update user object
+        user.save();
+    })
+    ```
+    ```javascript
+    var query = User.find({});
+    // Projection
+    query.select("first_name last_name")
+          .exec(doneCallback);
+    // Sorting
+    query.sort("first_name").exec(doneCallback);
+    //Limits
+    query.limit(50).exec(doneCallback);
+    query.sort("-location");
+    ```
+    ```javascript
+    // Deleting one
+    User.remove({_id: user_id}, function (err) { } );
+    // Deleting all
+    User.remove({}, function (err) { } );
+    ```
+
+#### CRUD
+-   Create, Read, Update, delete
+-   Simpler access model than SQL
+
+#### Mongoose
+-   Object Definition Language (ODL)
+
+### Web Architectures
+-   
