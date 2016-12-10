@@ -383,13 +383,13 @@ $.ajax({
 -	Event
     -   Event Queue
         -   Inner loop
-```Javascript
-while (true) {
-        if (!eventQueue.notEmpty()) {
-            eventQueue.pop().call();
+        ```Javascript
+        while (true) {
+                if (!eventQueue.notEmpty()) {
+                    eventQueue.pop().call();
+                }
         }
-}
-```
+        ```
 -	Get the same JS on browser and server
 -	Don't need DOM on the server
 -	Add events and an event queue, everything runs as a call from event loop. (See above)
@@ -445,10 +445,10 @@ while (true) {
     -   When programming with events, a listener/emitter is used.
     -   Listener - Function to be called when the event is signaled
     -   Emitter - Signal that an event has occurred
-```Javascript
-    var events = require('events');
-    var myEmitter = new events.eventEmitter();
-    myEmitter.on('myEvent', function(param1, param2) {
-     console.log('myEvent occurred with ' + param1 + 'and' + param2 + '!'); // like wait
-    myEmitter.emit('myEvent', 'arg1', 'arg2'); // like signal
-```
+    ```Javascript
+        var events = require('events');
+        var myEmitter = new events.eventEmitter();
+        myEmitter.on('myEvent', function(param1, param2) {
+         console.log('myEvent occurred with ' + param1 + 'and' + param2 + '!'); // like wait
+        myEmitter.emit('myEvent', 'arg1', 'arg2'); // like signal
+    ```
