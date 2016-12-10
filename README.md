@@ -419,28 +419,28 @@ while (true) {
     -   ignore files for git
 -	Programming with events/callbacks
     -   Threads: Blocking/waiting is transparent
-```Javascript
-r1 = step1();
-console.log('step1 done', r1);
-r2 = step2(r1);
-console.log('step2 done', r2);
-r3 = step3(r2);
-console.log('step3 done', r3);
-console.log('All Done!');
-```
+	```Javascript
+	r1 = step1();
+	console.log('step1 done', r1);
+	r2 = step2(r1);
+	console.log('step2 done', r2);
+	r3 = step3(r2);
+	console.log('step3 done', r3);
+	console.log('All Done!');
+	```
     -   Events: Blocking/waiting requires callback
-```javascript
-step1(function(r1) {
-        console.log('s1 done', r1);
-        step2(r1, function (r2) {
-            console.log('s2 done', r2);
-            step3(r2, function (r3) {
-                console.log('s3done',r3);
-                console.log('All Done!');
-            });
-        });
-    });
-```
+	```javascript
+	step1(function(r1) {
+		console.log('s1 done', r1);
+		step2(r1, function (r2) {
+		    console.log('s2 done', r2);
+		    step3(r2, function (r3) {
+			console.log('s3done',r3);
+			console.log('All Done!');
+		    });
+		});
+	    });
+	```
 -   Listener/emitter pattern
     -   When programming with events, a listener/emitter is used.
     -   Listener - Function to be called when the event is signaled
