@@ -27,7 +27,7 @@ selector {
     property: value;
     property: value;
 }`
--	Bowser’s default styles -> external css (in a `<link>` tag) -> embedded `<style>` tag -> inline style (`style="name:value;"`) -> `!important`
+-	Bowser's default styles -> external css (in a `<link>` tag) -> embedded `<style>` tag -> inline style (`style="name:value;"`) -> `!important`
 
 ## Week2
 ### Elements
@@ -97,7 +97,7 @@ selector {
 
 ### Anonymous functions:
 -	no function name to display in stack trees
--	can’t refer to itself for recursion or unbinding and event handler
+-	can't refer to itself for recursion or unbinding and event handler
 
 ### Closure:
 -	`return`
@@ -175,7 +175,7 @@ selector {
     -   `$("#id")`, `$(".class")`, `$("tag")`
     -   `$("[attr]")` to select all elements with a certain `attr`
     -   `$("[attr=value]")` to select all elements which attr = value
-    -   `$(‘this’)` to set current element
+    -   `$('this')` to set current element
     -   like CSS
 -	actions
     -   getter
@@ -236,8 +236,8 @@ $.ajax({
         -   Asks a server for a page or data
         -   Parameters are sent in URL query (`?name=value&name=value`)
     -   POST: large chunks or sensitive data
-        -   Retrieves the server’s response
-        -   Parameters are embedded in request’s HTTP packet
+        -   Retrieves the server's response
+        -   Parameters are embedded in request's HTTP packet
 
 ### URL encoding
 -	Special characters will be encoded for URL query
@@ -300,12 +300,12 @@ $.ajax({
     -   Mostly only visible to application
     -   HttpOnly: don't allow Javascript to manipulate cookies (but still may be able to read them or learn of their existence)
     -   Secure: Only send over HTTPS
-    -   Doesn’t seem to be best practices yet
+    -   Doesn't seem to be best practices yet
     -   Lifetime
-        -    Session cookies by default are temporary cookie stored only in browser’s memory. Erased when browser closed.
-    -   Can’t be used for long-term tracking
+        -    Session cookies by default are temporary cookie stored only in browser's memory. Erased when browser closed.
+    -   Can't be used for long-term tracking
     -   Safer, because only the browser has access
-        -    Persistent cookies are stored in a file on the browser’s computer and can track long-term info
+        -    Persistent cookies are stored in a file on the browser's computer and can track long-term info
     -   Potentially less secure because users/programs can open cookie file, see/change cookie values
         -    Problems and Limitations
     -   Browsers can disable cookies.
@@ -331,7 +331,7 @@ $.ajax({
 -	Sessions:
     -    A server-side option
     -    Store the current states on the server
-    -    Each request includes a token identifying browser’s session
+    -    Each request includes a token identifying browser's session
         -    Tokens can be passed via cookies, hidden variables, URL rewriting
         -    At each request, executing script uses the token to fetch the session state.
         -    ##Session Hijacking
@@ -367,7 +367,7 @@ $.ajax({
         -   Collection of items in the resource
         -   Select a resource
 -	RESTful API design
-    -   Use logical URLs that are human-understandable and don’t point to a file
+    -   Use logical URLs that are human-understandable and don't point to a file
     -   If dealing with a lot of data provide a paging mechanism
     -   Document everything and provide instructions
     -   Use POST (not GET) to make a change
@@ -427,15 +427,28 @@ $.ajax({
         console.log('step3 done', r3);
         console.log('All Done!');
         ```
+
     -   Events: Blocking/waiting requires callback
         -   ```Javascript
         step1(function(r1) {
-            console.log('s1 done', r1);
-            step2(r1, function (r2) {
-                console.log('s2 done', r2);
-                step3(r2, function (r3) {
-                    console.log('s3done',r3);
-                    console.log('All Done!');
+                console.log('s1 done', r1);
+                step2(r1, function (r2) {
+                    console.log('s2 done', r2);
+                    step3(r2, function (r3) {
+                        console.log('s3done',r3);
+                        console.log('All Done!');
+                    });
                 });
             });
         ```
+-   Listener/emitter pattern
+    -   When programming with events, a listener/emitter is used.
+    -   Listener - Function to be called when the event is signaled
+    -   Emitter - Signal that an event has occurred
+    -   ```Javascript
+    var events = require('events');
+    var myEmitter = new events.eventEmitter();
+    myEmitter.on('myEvent', function(param1, param2) {
+     console.log('myEvent occurred with ' + param1 + 'and' + param2 + '!'); // like wait
+    myEmitter.emit('myEvent', 'arg1', 'arg2'); // like signal
+    ```
