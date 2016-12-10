@@ -217,7 +217,7 @@ Ajax and JSON
 -	JSON.stringify(object)
 
 ### Ajax and JQuery
-- ```Javascript
+```Javascript
 $.ajax({
     url: "url",
     data: {},
@@ -225,7 +225,8 @@ $.ajax({
     success: function() {
 	       JQuery
        }
-	});```
+});
+```
 
 ## Week5: Forms and Validation, Cookies and Sessions
 
