@@ -427,7 +427,7 @@ $.ajax({
         console.log('All Done!');```
 
     -   Events: Blocking/waiting requires callback
-        -   ```Javascript
+        -   ```javascript
         step1(function(r1) {
                 console.log('s1 done', r1);
                 step2(r1, function (r2) {
