@@ -716,6 +716,7 @@ $.ajax({
     -   Easier Maintenance
     -   Reusable Components
     -   Faster development
+
 #### MVC
 -   Model View Controller
     -   User uses Controller
@@ -752,46 +753,52 @@ $.ajax({
 ## Week 9: review, templates
 
 ### Templates
-    -   Mustache, Pug (Jade), EJS, Handlebars, (Our project used nunjucks)...
-    -   Move Javascript out of HTML
-    -   Separate logic and display
-    -   Create a readable, maintainable language to write views
-    -   Modularize views to reuse pieces
-    -   User variables in HTML
+
+-   Mustache, Pug (Jade), EJS, Handlebars, (Our project used nunjucks)...
+-   Move Javascript out of HTML
+-   Separate logic and display
+-   Create a readable, maintainable language to write views
+-   Modularize views to reuse pieces
+-   User variables in HTML
 
 ## Week 10: Security
+
 ### Security
-    -   Goals
-        -   Confidentiality
-        -   integrity
-        -   availability
-    -   Risks
-        -   Financial
-        -   Reputation
-        -   physical
-    -   Threats
-        -   Insiders
-        -   Criminals
-        -   Commercial competitors
-        -   Nation-states
-        -   Law Enforcement
-        -   Vandals
+
+-   Goals
+    -   Confidentiality
+    -   integrity
+    -   availability
+-   Risks
+    -   Financial
+    -   Reputation
+    -   physical
+-   Threats
+    -   Insiders
+    -   Criminals
+    -   Commercial competitors
+    -   Nation-states
+    -   Law Enforcement
+    -   Vandals
 
 ### Attacks
-    -   Directly on system:
-        -   Stealing data, passwords, credit card Number
-        -   defacing, DOS (denial of service), link spam
-    -   On users
-        -   cross site scripting, request forgery (CSRF), Man-In-The-Middle (MITM), profiling
-    -   Both
-        -   Hosting bad content, "drive-by download"
-    -   Neither
-        -   Ad-based malware
+
+-   Directly on system:
+    -   Stealing data, passwords, credit card Number
+    -   defacing, DOS (denial of service), link spam
+-   On users
+    -   cross site scripting, request forgery (CSRF), Man-In-The-Middle (MITM), profiling
+-   Both
+    -   Hosting bad content, "drive-by download"
+-   Neither
+    -   Ad-based malware
+
 ### Transport Layer Security (TLS)
-    -   Security mechanism underlying HTTPS
-    -   Often called SSL
-    -   Client and server use public-key encryption on shared per-session secret, then use secret to encrypt session data
+
+-   Security mechanism underlying HTTPS
+-   Often called SSL
+-   Client and server use public-key encryption on shared per-session secret, then use secret to encrypt session data
 
 ### Authentication
-    -   Always store passwords salted & hashed, use trusted algorithms (_we used passport in our project_)
+-   Always store passwords salted & hashed, use trusted algorithms (_we used passport in our project_)
 ### To be ctn'd
