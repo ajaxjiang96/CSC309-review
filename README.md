@@ -825,7 +825,7 @@ SQL Injection:
     WHERE email = '?';
     ```
 
-    When replacing `?` with `x';UPDATE membersSET email = 'steve@unixwiz.net' WHERE email = ‘bob@example.com` will result
+    When replacing `?` with `x';UPDATE membersSET email = 'steve@unixwiz.net' WHERE email = 'bob@example.com` will result
 
     ```SQL
     SELECT email, passwd, login_id, full_name
@@ -835,7 +835,7 @@ SQL Injection:
         SET email = 'steve@unixwiz.net'
         WHERE email = 'bob@example.com';
     ```
-    
+
     Which replaces original email information with `'steve@unixwiz.net'`.
 
 Prevention:
