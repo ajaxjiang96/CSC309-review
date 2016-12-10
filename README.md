@@ -806,6 +806,7 @@ $.ajax({
 ### Injection
 SQL Injection:
 -   Example 1
+
     ```Java
     String query = "SELECT * FROM accounts WHERE custID='" + request.getParameter("id") + "'";
     ```
@@ -813,14 +814,19 @@ SQL Injection:
     ```Java
     String query = "SELECT * FROM accounts WHERE custID=' foo' or 'x'='x '";
     ```
+
     Which returns all customer information.
+
 -   Example 2
+
     ```SQL
     SELECT email, passwd, login_id, full_name
     FROM members
     WHERE email = '?';
     ```
+
     When replacing `?` with `x';UPDATE membersSET email = 'steve@unixwiz.net' WHERE email = ‘bob@example.com` will result
+
     ```SQL
     SELECT email, passwd, login_id, full_name
     FROM members
@@ -829,6 +835,7 @@ SQL Injection:
         SET email = 'steve@unixwiz.net'
         WHERE email = 'bob@example.com';
     ```
+    
     Which replaces original email information with `'steve@unixwiz.net'`.
 
 Prevention:
