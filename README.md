@@ -605,6 +605,7 @@ $.ajax({
     -   ObjectID - reference to another object
     -   Mixed - anything
 -   Defining:
+
     ```javascript
     var userSchema = new mongoose.Schema({
         first_name: String,
@@ -621,10 +622,12 @@ $.ajax({
         -   Common queries spend a lot of time scanning
         -   Need to enforce uniqueness
 -   Making model from schema
+
     ```javascript
     var User = mongoose.model('User', userSchema);
     ```
 -   Making objects from model
+
     ```javascript
     User.create({ first_name: 'Amy', last_name: 'Pond'}, doneCallback);
     function doneCallback(err, newUser) {
@@ -633,6 +636,7 @@ $.ajax({
     }
     ```
 -   Queries
+
     ```javascript
     User.find(function(err, users) {
         /* users is an array of objects */
@@ -645,6 +649,7 @@ $.ajax({
         user.save();
     })
     ```
+
     ```javascript
     var query = User.find({});
     // Projection
