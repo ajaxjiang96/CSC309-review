@@ -1,5 +1,5 @@
 # CSC309 Review
-## Week 1: HTML, CSS
+## HTML, CSS
 
 ### URL:
 -	`scheme:[//[user:password@]host[:port]][/]path[?query][#fragment]`
@@ -29,8 +29,6 @@ selector {
 }`
 -	Bowser's default styles -> external css (in a `<link>` tag) -> embedded `<style>` tag -> inline style (`style="name:value;"`) -> `!important`
 
-## Week2: CSS, HTTP, Servers
-
 ### Elements
 -	id provides a unique identifier for an element
 -	class provides a general way of accessing certain elements
@@ -43,6 +41,8 @@ selector {
 -	`width`: percentage or pixels (can apply max-width, min-width)
 -	`float`: remove element from normal document flow
 -	Need to `clear` element that follow a floating element
+
+## HTTP, Servers
 
 ### HTTP
 -	Protocols:
@@ -86,7 +86,7 @@ selector {
         -   If server of client crashes, their view of state may be inconsistent and must be reconciled.
 -	Simple server
 
-## Week 3: Javascript and DOM
+## Javascript and DOM
 
 ### Javascript:
 -	Not related to java
@@ -164,7 +164,7 @@ thirdLevel`assign`, `reload`, `replace`
         -   `availHeight`, `availWidth`, `colorDepth`, `height`, `pixelDepth`, `width`
 -   [IMAGE]
 
-## Week 4: JQuery & Ajax
+## JQuery & Ajax
 
 ### JQuery
 -	a library to make it easier to manipulate DOM
@@ -230,7 +230,7 @@ $.ajax({
 });
 ```
 
-## Week5: Forms and Validation, Cookies and Sessions
+## Forms and Validation, Cookies and Sessions
 
 ### `<form>`
 -	allow submission of data to the server
@@ -345,7 +345,7 @@ $.ajax({
 -	session storage
     -	store data for one session (lost when browser tab is closed)
 
-## Week 6: REST, NODE, Express
+## REST, NODE, Express
 
 ### REST
 -	REpresentational State Transfer
@@ -491,7 +491,7 @@ $.ajax({
     -   `res.end()` - End the request by responding it
     -   `res.send(content)` - Do write and End
 
-## Week 7: Databases, MongoDB and Mongoose
+## Databases, MongoDB and Mongoose
 
 ### Relational Databases
 -   collection of tables with rows and columns
@@ -750,10 +750,9 @@ $.ajax({
     -   MVC
         -   model, view and controller are together
 
-## Week 8: React
-## Week 9: review, templates
+## React
 
-### Templates
+## Templates
 
 -   Mustache, Pug (Jade), EJS, Handlebars, (Our project used nunjucks)...
 -   Move Javascript out of HTML
@@ -762,7 +761,7 @@ $.ajax({
 -   Modularize views to reuse pieces
 -   User variables in HTML
 
-## Week 10: Security
+## Security
 
 ### Security
 
