@@ -803,4 +803,137 @@ $.ajax({
 ### Authentication
 -   Always store passwords salted & hashed, use trusted algorithms (_we used passport in our project_)
 
-### To be ctn'd
+### Injection
+SQL Injection:
+-   Example 1
+    ```Java
+    String query = "SELECT * FROM accounts WHERE custID='" + request.getParameter("id") + "'";
+    ```
+    With a input of ```foo' or 'x'='x``` will form
+    ```Java
+    String query = "SELECT * FROM accounts WHERE custID=' foo' or 'x'='x '";
+    ```
+    Which returns all customer information.
+-   Example 2
+    ```SQL
+    SELECT email, passwd, login_id, full_name
+    FROM members
+    WHERE email = '?';
+    ```
+    When replacing `?` with `x';UPDATE membersSET email = 'steve@unixwiz.net' WHERE email = ‘bob@example.com` will result
+    ```SQL
+    SELECT email, passwd, login_id, full_name
+    FROM members
+    WHERE email = 'x';
+        UPDATE members
+        SET email = 'steve@unixwiz.net'
+        WHERE email = 'bob@example.com';
+    ```
+    Which replaces original email information with `'steve@unixwiz.net'`.
+
+Prevention:
+-   User parameterized Queries
+-   Escape everything
+-   Validate input
+-   Never trust raw input
+
+### Auth and Sessions
+Vulnerabilities
+-   User credentials not stored using hashing or encryption
+-   Credentials can be guessed or overwritten
+-   Session IDs exposed in URL
+-   Session IDs don't timeout
+-   Auth tokens not invalidated on log out
+-   Passwords, session IDs sent over unencrypted Connections
+
+#### OAuth
+-   Auth framework that delegates user authentication to a service that hosts the user account
+-   Must register app with the auth service, including the URL to redirect to
+-   Auth service redirects to a registered URL with an authorization code
+-   ![OAuth](/assets/images/OAuth.png)
+
+### Cross-Site scripting
+-   Data enters web application and is included in dynamic content sent to a web user without being validated for malicious content.
+-   Usually JS but may also include HTML and other Data
+-   Types (3):
+    -   stored
+        -   injected script is permanently stored on server
+    -   reflected
+    -   DOM-based
+
+Prevention:
+-   Escape all untrusted data
+
+### Insecure Direct Object reference
+-   Attacker is an authorized user
+-   Attacker can gain access to objects by guessing parameters
+
+Prevention:
+-   Ensure user is authorized for access
+
+### Security Misconfiguration
+-   Software out of date
+-   Unnecessary features enabled
+-   default accounts and passwords still enabled / unchanged
+-   error handling reveal stack traces or overly informative error messages sent to users
+-   Security settings in development frameworks not set to secure values
+
+### Sensitive Data Exposure
+Sensitive data:
+-   passwords
+-   credit cards
+-   personal info
+
+Prevention:
+-   Encrypt all sensitive data
+
+### Missing Function Level Access Control
+-   Modify URL to gain unauthorized Access
+-   Internal ids appear in URLs
+
+Prevention:
+-   Check access authorization on every object
+-   Not sufficient to simply not show privileged operations to unprivileged users in the UI
+
+### Cross-Site Request forgery
+-   Some Content on unrelated site includes a POST to app
+-   If a user of the app navigates to compromised site while logged into the app, malicious POST request can pretend to be the user and steal the user's info from app
+
+Prevention:
+-   Include unpredictable token with each HTTP request (usually in a hidden field)
+
+### Using Components with known security Vulnerabilities
+-   Dev team / Dev Ops people must be vigilant
+-   Be careful what you include in your app
+-   Update software always
+
+### Unvalidated redirects and Forwards
+Apps user redirects or internal forwards where unvalidated parameters are used
+
+## Promises
+-   Callback function have been the main mechanism for managing asynchronous programming
+-   Callbacks can be hard to trance and reason about
+-   Promises are a different type of abstraction for managing asynchronous programming
+
+### Terminology
+-   Promise is an object or function with a `then` method whose behavior confirms its specification
+-   thenable is an object or function that defines a then method
+-   value is any legal JS value
+-   exception is a value that is thrown using the throw statement
+-   reason is a value that indicates why a promise was rejected
+-   States: pending, fulfilled, rejected
+-   settled: fulfilled or rejected
+
+#### `.then`
+-   Registers a callback to receive either a promise's eventual value, or the reason it cannot be fulfilled
+-   returns a promise
+
+    ```Javascript
+    myPromise.then(handleResolve, handleReject);
+    function handleResolve(data) {
+        //handle success
+    }
+    function handleReject(error) {
+        //handle failure
+    }
+    ```
