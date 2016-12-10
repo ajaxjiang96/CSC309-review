@@ -1,5 +1,5 @@
 # CSC309 Review
-## Week 1
+## Week 1: HTML, CSS
 
 ### URL:
 -	`scheme:[//[user:password@]host[:port]][/]path[?query][#fragment]`
@@ -29,7 +29,8 @@ selector {
 }`
 -	Bowser's default styles -> external css (in a `<link>` tag) -> embedded `<style>` tag -> inline style (`style="name:value;"`) -> `!important`
 
-## Week2
+## Week2: CSS, HTTP, Servers
+
 ### Elements
 -	id provides a unique identifier for an element
 -	class provides a general way of accessing certain elements
@@ -85,7 +86,7 @@ selector {
         -   If server of client crashes, their view of state may be inconsistent and must be reconciled.
 -	Simple server
 
-## Week3 Javascript and DOM
+## Week 3: Javascript and DOM
 
 ### Javascript:
 -	Not related to java
@@ -163,7 +164,8 @@ selector {
         -   `availHeight`, `availWidth`, `colorDepth`, `height`, `pixelDepth`, `width`
 -   [IMAGE]
 
-## Week4 JQuery & Ajax
+## Week 4: JQuery & Ajax
+
 ### JQuery
 -	a library to make it easier to manipulate DOM
     -   traversal
@@ -344,6 +346,7 @@ $.ajax({
     -	store data for one session (lost when browser tab is closed)
 
 ## Week 6: REST, NODE, Express
+
 ### REST
 -	REpresentational State Transfer
 -	Architectural style for using HTTP to provide resources over the web
@@ -439,16 +442,53 @@ $.ajax({
 			console.log('All Done!');
 		    });
 		});
-	    });
+	});
 	```
 -   Listener/emitter pattern
     -   When programming with events, a listener/emitter is used.
     -   Listener - Function to be called when the event is signaled
     -   Emitter - Signal that an event has occurred
     ```Javascript
-        var events = require('events');
-        var myEmitter = new events.eventEmitter();
-        myEmitter.on('myEvent', function(param1, param2) {
-         console.log('myEvent occurred with ' + param1 + 'and' + param2 + '!'); // like wait
-        myEmitter.emit('myEvent', 'arg1', 'arg2'); // like signal
+    var events = require('events');
+    var myEmitter = new events.eventEmitter();
+    myEmitter.on('myEvent', function(param1, param2) {
+            console.log('myEvent occurred with ' + param1 + 'and' + param2 + '!'); // like wait
+        });
+    myEmitter.emit('myEvent', 'arg1', 'arg2'); // like signal
     ```
+
+### `express.js`
+-   relatively thin layer on top of the base `node.js` functionality.
+    ```javascript
+    var express = require('express');
+    var expressApp = express();
+    expressApp.get('/', function (httpRequest, httpResponse) {
+          httpResponse.send('hello world');
+    });
+    expressApp.listen(3000);
+    ```
+-   http methods:
+    ```javascript
+    expressApp.get(urlPath, requestProcessFunction);
+    expressApp.post(urlPath, requestProcessFunction);
+    expressApp.put(urlPath, requestProcessFunction);
+    expressApp.delete(urlPath, requestProcessFunction);
+    expressApp.all(urlPath, requestProcessFunction);
+    ```
+    -   Can contain parameters (e.g. `'/user/:user_id'`)
+-   http `req` object
+    -  `req` of  `expressApp.get('/user/:user_id', function (req, res)`
+    -   `request.params` - Object containing URL rout params (e.g. `user_id`)
+    -   `request.query` - Object containing query params (e.g `&foo=9` => `{foo: 9}`)
+    -   `request.body` - Object containing the parsed body
+    -   `request.get(field)` - Returns the value of the specified HTTP header field
+
+-   http `res` object
+    -   `res` of  `expressApp.get('/user/:user_id', function (req, res)`
+    -   `res.write(content)` - Build up the response body with content
+    -   `res.status(code)` - Set the HTTP status code of the reply
+    -   `res.set(prop, value)` - set the response header property to value
+    -   `res.end()` - End the request by responding it
+    -   `res.send(content)` - Do write and End
+
+### Week 7: Databases
