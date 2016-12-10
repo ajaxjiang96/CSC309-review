@@ -387,8 +387,7 @@ $.ajax({
                 if (!eventQueue.notEmpty()) {
                     eventQueue.pop().call();
                 }
-        }
-        ```
+        }```
 -	Get the same JS on browser and server
 -	Don't need DOM on the server
 -	Add events and an event queue, everything runs as a call from event loop. (See above)
@@ -425,8 +424,7 @@ $.ajax({
         console.log('step2 done', r2);
         r3 = step3(r2);
         console.log('step3 done', r3);
-        console.log('All Done!');
-        ```
+        console.log('All Done!');```
 
     -   Events: Blocking/waiting requires callback
         -   ```Javascript
@@ -439,8 +437,7 @@ $.ajax({
                         console.log('All Done!');
                     });
                 });
-            });
-        ```
+            });```
 -   Listener/emitter pattern
     -   When programming with events, a listener/emitter is used.
     -   Listener - Function to be called when the event is signaled
@@ -450,5 +447,4 @@ $.ajax({
     var myEmitter = new events.eventEmitter();
     myEmitter.on('myEvent', function(param1, param2) {
      console.log('myEvent occurred with ' + param1 + 'and' + param2 + '!'); // like wait
-    myEmitter.emit('myEvent', 'arg1', 'arg2'); // like signal
-    ```
+    myEmitter.emit('myEvent', 'arg1', 'arg2'); // like signal```
