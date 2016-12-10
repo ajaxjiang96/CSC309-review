@@ -676,4 +676,122 @@ $.ajax({
 -   Object Definition Language (ODL)
 
 ### Web Architectures
--   
+-   Higher level structures underlying a web app
+-   Made up of elements, their properties and relationships among elements
+
+#### n-tier
+-   separate the components of a web app into different tiers of layers
+-   Components:
+    -   presentation: the static or dynamically generated content rendered by the browser (front-end)
+    -   processing logic: dynamic content processing and generation, e.g. using node.js, PHP, Java EE, ASP.NET
+    -   data management: database, comprising data sets and data management system (back-end)
+-   __1-tier__
+    -   All three layers are on the same machine and presentation, logic and data are tightly connected
+    -   Scalability: single processor, no separation, hard to scale
+    -   Portability: Moving to a new machine, or changing anything may mean major re-writes.
+    -   Maintenance: Changing one layer requires changing other layers
+-   __2-tier__
+    -   Database runs on a separated server
+    -   Presentation and logic layers are tightly coupled
+    -   Can easily switch to a different Database
+    -   Coupling of presentation and logic can lead to heavy server load and network congestion
+-   __3-tier__
+    -   Each tier is separate with a clear interface between them
+    -   Each tier can potentially run on a different machine
+    -   client-server
+    -   unconnected tiers should not communicate (_in our project, client never communicates with database server directly_)
+    -   change in platform affects only that tier
+-   Presentation Layer
+    -   user interface and Interactions
+    -   client-view or front-end
+    -   should not contain business logic or data access code
+-   Logic Layer
+    -   Set of rules for processing the data and accommodates many individual users
+    -   No Presentation or access code
+-   Data Layer
+    -   Physical storage for data Persistence
+    -   Manages access to the DB or file system
+    -   Also called back-end
+-   __Benifetes__
+    -   Easier Maintenance
+    -   Reusable Components
+    -   Faster development
+#### MVC
+-   Model View Controller
+    -   User uses Controller
+    -   Controller manipulates Model
+    -   Model updates View
+    -   View seen by User
+-   __Model__ manages application state by responding to reqs for info about its __state__ (from view) or instructions to __change state__ (from controller)
+    -   Database
+    -   Session info
+    -   rules governing transaction
+-   __View__ renders the model into a form suitable for __interaction__ (UI). Multiple views can exist for a single model give different contexts
+    -   front-end website (HTML, CSS, and server-side templates)
+-   __Controller__ receives user input and initiates a response by making updates to the __state__ of objects in the model and __selecting__ a view for the response
+    -   Client-side scripting that manages __user interactions__, HTTP __request__ processing and business __logic__ preprocessing
+-   Benefits:
+    -   Clarity of design
+    -   Separation of concerns
+    -   Parallel development
+    -   Distributable
+
+#### 3-tier vs MVC
+-   communication
+    -   3-tier:
+        -   Presentation Layer never communicates directly with data layer (only through logic layer)
+    -   MVC
+        -   All layers communicate directly
+-   Usage
+    -   3-tier
+        -   Client, middleware and data tiers are on physically separate platforms
+    -   MVC
+        -   model, view and controller are together
+
+## Week 8: React
+## Week 9: review, templates
+
+### Templates
+    -   Mustache, Pug (Jade), EJS, Handlebars, (Our project used nunjucks)...
+    -   Move Javascript out of HTML
+    -   Separate logic and display
+    -   Create a readable, maintainable language to write views
+    -   Modularize views to reuse pieces
+    -   User variables in HTML
+
+## Week 10: Security
+### Security
+    -   Goals
+        -   Confidentiality
+        -   integrity
+        -   availability
+    -   Risks
+        -   Financial
+        -   Reputation
+        -   physical
+    -   Threats
+        -   Insiders
+        -   Criminals
+        -   Commercial competitors
+        -   Nation-states
+        -   Law Enforcement
+        -   Vandals
+
+### Attacks
+    -   Directly on system:
+        -   Stealing data, passwords, credit card Number
+        -   defacing, DOS (denial of service), link spam
+    -   On users
+        -   cross site scripting, request forgery (CSRF), Man-In-The-Middle (MITM), profiling
+    -   Both
+        -   Hosting bad content, "drive-by download"
+    -   Neither
+        -   Ad-based malware
+### Transport Layer Security (TLS)
+    -   Security mechanism underlying HTTPS
+    -   Often called SSL
+    -   Client and server use public-key encryption on shared per-session secret, then use secret to encrypt session data
+
+### Authentication
+    -   Always store passwords salted & hashed, use trusted algorithms (_we used passport in our project_)
+### To be ctn'd
