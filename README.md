@@ -802,4 +802,5 @@ $.ajax({
 
 ### Authentication
 -   Always store passwords salted & hashed, use trusted algorithms (_we used passport in our project_)
+
 ### To be ctn'd
