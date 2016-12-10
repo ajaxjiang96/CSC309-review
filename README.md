@@ -604,6 +604,7 @@ $.ajax({
     -   Array - e.g comments `[ObjectId]`
     -   ObjectID - reference to another object
     -   Mixed - anything
+
 -   Defining:
 
     ```javascript
@@ -712,7 +713,7 @@ $.ajax({
     -   Physical storage for data Persistence
     -   Manages access to the DB or file system
     -   Also called back-end
--   __Benifetes__
+-   __Benifites__
     -   Easier Maintenance
     -   Reusable Components
     -   Faster development
